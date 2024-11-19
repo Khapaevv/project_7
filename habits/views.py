@@ -32,14 +32,14 @@ class HabitListAPIView(ListAPIView):
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    # permission_classes = [IsAuthenticated]
-    # pagination_class = MyPagination
+    permission_classes = [IsAuthenticated]
+    pagination_class = MyPagination
 
-    # def get(self, request, **kwargs):
-    #     queryset = Habit.objects.filter(owner=self.request.user)
-    #     paginated_queryset = self.paginate_queryset(queryset)
-    #     serializer = HabitSerializer(paginated_queryset, many=True)
-    #     return self.get_paginated_response(serializer.data)
+    def get(self, request, **kwargs):
+        queryset = Habit.objects.filter(owner=self.request.user)
+        paginated_queryset = self.paginate_queryset(queryset)
+        serializer = HabitSerializer(paginated_queryset, many=True)
+        return self.get_paginated_response(serializer.data)
 
 
 class HabitRetrieveAPIView(RetrieveAPIView):
