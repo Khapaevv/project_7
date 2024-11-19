@@ -1,10 +1,10 @@
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
-# from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 
 from habits.models import Habit
-# from habits.paginators import MyPagination
+from habits.paginators import MyPagination
 from habits.serializers import HabitSerializer
-# from users.permissions import IsOwner
+from users.permissions import IsOwner
 
 
 class HabitCreateAPIView(CreateAPIView):
@@ -12,7 +12,7 @@ class HabitCreateAPIView(CreateAPIView):
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -23,8 +23,8 @@ class PublicHabitListAPIView(ListAPIView):
 
     queryset = Habit.objects.filter(is_public=True)
     serializer_class = HabitSerializer
-    # permission_classes = [IsAuthenticated]
-    # pagination_class = MyPagination
+    permission_classes = [IsAuthenticated]
+    pagination_class = MyPagination
 
 
 class HabitListAPIView(ListAPIView):
@@ -47,7 +47,7 @@ class HabitRetrieveAPIView(RetrieveAPIView):
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    # permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes = [IsAuthenticated, IsOwner]
 
 
 class HabitUpdateAPIView(UpdateAPIView):
@@ -55,7 +55,7 @@ class HabitUpdateAPIView(UpdateAPIView):
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    # permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes = [IsAuthenticated, IsOwner]
 
 
 class HabitDestroyAPIView(DestroyAPIView):
@@ -63,4 +63,4 @@ class HabitDestroyAPIView(DestroyAPIView):
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
-    # permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes = [IsAuthenticated, IsOwner]
