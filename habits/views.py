@@ -1,4 +1,10 @@
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import (
+    CreateAPIView,
+    DestroyAPIView,
+    ListAPIView,
+    RetrieveAPIView,
+    UpdateAPIView,
+)
 from rest_framework.permissions import IsAuthenticated
 
 from habits.models import Habit
@@ -8,7 +14,6 @@ from users.permissions import IsOwner
 
 
 class HabitCreateAPIView(CreateAPIView):
-    """ Habit create endpoint """
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
@@ -19,7 +24,6 @@ class HabitCreateAPIView(CreateAPIView):
 
 
 class PublicHabitListAPIView(ListAPIView):
-    """ Public Habit list endpoint """
 
     queryset = Habit.objects.filter(is_public=True)
     serializer_class = HabitSerializer
@@ -28,7 +32,6 @@ class PublicHabitListAPIView(ListAPIView):
 
 
 class HabitListAPIView(ListAPIView):
-    """ Habit list endpoint """
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
@@ -43,7 +46,6 @@ class HabitListAPIView(ListAPIView):
 
 
 class HabitRetrieveAPIView(RetrieveAPIView):
-    """ Habit detail endpoint """
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
@@ -51,7 +53,6 @@ class HabitRetrieveAPIView(RetrieveAPIView):
 
 
 class HabitUpdateAPIView(UpdateAPIView):
-    """ Habit update endpoint """
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
@@ -59,7 +60,6 @@ class HabitUpdateAPIView(UpdateAPIView):
 
 
 class HabitDestroyAPIView(DestroyAPIView):
-    """ Habit delete endpoint """
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer

@@ -5,9 +5,9 @@ from habits.models import Habit, Weekday
 
 @admin.register(Habit)
 class HabitAdmin(admin.ModelAdmin):
-    list_display = ('id', 'action', 'owner', 'is_public')
+    list_display = ("id", "action", "owner", "is_public")
 
 
 @admin.register(Weekday)
 class WeekdayAdmin(admin.ModelAdmin):
-    list_display = ('id', 'day', 'number')
+    list_display = ("id", "day", "number")
